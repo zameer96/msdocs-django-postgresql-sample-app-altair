@@ -16,9 +16,9 @@ def main():
         load_dotenv('./.env')
 
     # When running on Azure App Service you should use the production settings.
-    if 'WEBSITE_HOSTNAME' in os.environ:
-        # settings_module = "azureproject.production" 
-        settings_module = 'azureproject.settings'
+    if 'WEBSITE_HOSTNAME' in os.environ and not os.environ('DEBUG', False):
+        settings_module = "azureproject.production" 
+        # settings_module = 'azureproject.settings'
     else:
          settings_module = 'azureproject.settings'
          
