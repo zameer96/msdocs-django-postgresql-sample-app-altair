@@ -29,7 +29,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Configure Postgres database based on connection string of the libpq Keyword/Value form
 # https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 DATABASES = {
-    'default': os.getenv("DATABASE_URL")
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
 
 CACHES = {
