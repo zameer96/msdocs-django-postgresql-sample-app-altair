@@ -101,8 +101,7 @@ if default_database.startswith('{'):
     default_database = json.loads(default_database)
 else:
     print("IIII  ", default_database)
-    default_database = dj_database_url.parse({'default': {'NAME': 'azureproject_db', 'USER': 'azureuser', 'PASSWORD': 'TestCollerk@9742$', 'HOST': 'dev-collerk.database.windows.net', 'PORT': '1433', 'CONN_MAX_AGE': 0, 'CONN_HEALTH_CHECKS': False, 'DISABLE_SERVER_SIDE_CURSORS': False, 'ENGINE': 'sql_server.pyodbc', 'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server'}}})
-
+    default_database = dj_database_url.parse(default_database)
 print("DATABASE DEV=========> XXXXXX11111 ", default_database)
 
 DATABASES = {
