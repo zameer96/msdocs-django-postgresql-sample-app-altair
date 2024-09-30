@@ -96,10 +96,10 @@ WSGI_APPLICATION = 'azureproject.wsgi.application'
 #   Set these environment variables in the .env file for this project.
 
 default_database = os.getenv('DATABASE_URL')
-print("DATABASE DEV=========> XXXXXX ", default_database)
+print("DATABASE DEV22=========> XXXXXX ", default_database)
 
 DATABASES = {
-    'default': default_database
+    'default': dj_database_url.parse(default_database)
 }
 
 
