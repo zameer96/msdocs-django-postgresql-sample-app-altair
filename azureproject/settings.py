@@ -1,3 +1,4 @@
+import json
 """
 Django settings for azureproject project.
 
@@ -93,8 +94,14 @@ WSGI_APPLICATION = 'azureproject.wsgi.application'
 
 # Configure Postgres database for local development
 #   Set these environment variables in the .env file for this project.
+default_database = os.getenv('DATABASE_URL')
+if default_database.startswith('{'):
+    default_database = json.loads(default_database)
+else:
+    default_database = dj_database_url.parse(default_database)
+    
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    'default': default_database
 }
 
 
