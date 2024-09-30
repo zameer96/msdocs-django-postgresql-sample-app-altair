@@ -33,7 +33,7 @@ default_database = os.getenv('DATABASE_URL')
 print("DATABASE PRODDDD=========> XXXXXX ", default_database)
     
 DATABASES = {
-    'default': default_database
+    'default': dj_database_url.parse(default_database)
 }
 
 CACHES = {
