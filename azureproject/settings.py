@@ -94,13 +94,22 @@ WSGI_APPLICATION = 'azureproject.wsgi.application'
 
 # Configure Postgres database for local development
 #   Set these environment variables in the .env file for this project.
-
+print("DDDDDDD=------->")
 default_database = os.getenv('DATABASE_URL')
-print("DATABASE DEV22=========> XXXXXX ", default_database)
+if default_database.startswith('{'):
+    print("EEEE")
+    default_database = json.loads(default_database)
+else:
+    print("IIII  ", default_database)
+    default_database = dj_database_url.parse({'default': {'NAME': 'azureproject_db', 'USER': 'azureuser', 'PASSWORD': 'TestCollerk@9742$', 'HOST': 'dev-collerk.database.windows.net', 'PORT': '1433', 'CONN_MAX_AGE': 0, 'CONN_HEALTH_CHECKS': False, 'DISABLE_SERVER_SIDE_CURSORS': False, 'ENGINE': 'sql_server.pyodbc', 'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server'}}})
+
+print("DATABASE DEV=========> XXXXXX11111 ", default_database)
 
 DATABASES = {
-    'default': dj_database_url.parse(default_database)
+    'default': default_database
 }
+print("DATABASESSSS DEV=========> XXXXXX ", DATABASES)
+
 
 
 # Password validation

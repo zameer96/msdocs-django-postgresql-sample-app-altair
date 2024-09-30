@@ -30,10 +30,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Configure Postgres database based on connection string of the libpq Keyword/Value form
 # https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 default_database = os.getenv('DATABASE_URL')
-print("DATABASE PRODDDD=========> XXXXXX ", default_database)
+if default_database.startswith('{'):
+    default_database = json.loads(default_database)
+else:
+    default_database = dj_database_url.config(default_database)
     
+print("PROD DB -----DD >>> ", default_database)
 DATABASES = {
-    'default': dj_database_url.parse(default_database)
+    'default': default_database
 }
 
 CACHES = {
