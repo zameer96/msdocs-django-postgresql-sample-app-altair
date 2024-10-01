@@ -43,13 +43,10 @@ DATABASES = {
     'default': default_database
 }
 
+cache_default = os.getenv('CACHE_URL')
+if cache_default.startswith('{'):
+    cache_default = json.loads(cache_default)
+
 CACHES = {
-        "default": {  
-            "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": os.environ.get('AZURE_REDIS_CONNECTIONSTRING'),
-            "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient",
-                "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
-        },
-    }
+        "default": cache_default,
 }

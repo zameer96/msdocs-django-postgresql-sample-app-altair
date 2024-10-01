@@ -129,14 +129,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+cache_default = os.getenv('CACHE_URL')
+if cache_default.startswith('{'):
+    cache_default = json.loads(cache_default)
+
 CACHES = {
-        "default": {  
-            "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": os.environ.get('CACHELOCATION'),
-            "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    }
+        "default": cache_default,
 }
 
 # Internationalization
