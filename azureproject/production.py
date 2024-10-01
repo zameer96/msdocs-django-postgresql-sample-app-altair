@@ -31,11 +31,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 default_database = os.getenv('DATABASE_URL')
 if default_database.startswith('{'):
+    print("PPEEEE")
     default_database = json.loads(default_database)
 else:
-    default_database = dj_database_url.config(default_database)
-    
+    print("PPIIII  ", default_database)
+    default_database = dj_database_url.parse(default_database)
 print("PROD DB -----DD >>> ", default_database)
+
+
 DATABASES = {
     'default': default_database
 }
